@@ -1,16 +1,13 @@
-# flutter_cubit
+# flutter_travel
 
-A new Flutter project.
+Created this by watching tutorial from youtube, still not very clear with bloc and cubit but UI is very clear now 
 
-## Getting Started
+Main page-
+![image](https://github.com/Vasugupta13/TravelApp/assets/98811369/75372f4b-52aa-40b2-9661-4eb1054d67c8)
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+Home page-
+![image](https://github.com/Vasugupta13/TravelApp/assets/98811369/f028aee5-1cca-4d57-94e5-39c7e010f86c)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Navigation Page-
+![image](https://github.com/Vasugupta13/TravelApp/assets/98811369/b716c5ef-f32a-4464-b66d-bf4a6e9df516)
