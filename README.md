@@ -9,4 +9,5 @@ Home page-
 ![image](https://github.com/Vasugupta13/TravelApp/assets/98811369/f028aee5-1cca-4d57-94e5-39c7e010f86c)
 
 Navigation Page-
-![image](https://github.com/Vasugupta13/TravelApp/assets/98811369/b716c5ef-f32a-4464-b66d-bf4a6e9df516)
+![image](https://github.com/Vasugupta13/TravelApp/assets/98811369/29cd2d4d-b955-434a-b4d6-d4cfd38ba89b)
+
