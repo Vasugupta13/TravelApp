@@ -5,6 +5,7 @@ import 'package:flutter_cubit/cubit/app_cubits.dart';
 import 'package:flutter_cubit/pages/detail_page.dart';
 import 'package:flutter_cubit/pages/navpages/main_page.dart';
 import 'package:flutter_cubit/pages/welcome_page.dart';
+import 'package:flutter_cubit/widgets/app_large_text.dart';
 
 class AppCubitLogics extends StatefulWidget {
   const AppCubitLogics({Key? key}) : super(key: key);
@@ -20,15 +21,17 @@ class _AppCubitLogicsState extends State<AppCubitLogics> {
       body: BlocBuilder<AppCubits, CubitStates>(
         builder: (context, state){
           if(state is DetailState){
-            return DetailPage();
-          }if(state is WelcomeState){
-            return WelcomePage();
-          }if(state is LoadedState){
-            return MainPage();
-          }if(state is LoadingState){
-            return Center(child: CircularProgressIndicator(),);
+            return const DetailPage();
+          }else if(state is WelcomeState){
+            return const WelcomePage();
+          }else if(state is LoadedState){
+            return const MainPage();
+          }else if(state is LoadingState){
+            return const Center(child: CircularProgressIndicator(),);
+          }else if (state is ErrorState) {
+            return Center(child: AppLargeText(text: state.message));
           }else{
-            return Container();
+            return Center(child: AppLargeText(text: 'BLoC Failed'));
           }
         },
       ),
