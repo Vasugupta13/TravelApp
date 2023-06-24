@@ -41,3 +41,12 @@ class DetailState extends CubitStates{
   List<Object> get props => [place];
 
 }
+
+class ErrorState extends CubitStates {
+  final String message;
+
+  ErrorState(this.message);
+
+  @override
+  List<Object?> get props => [message];
+}

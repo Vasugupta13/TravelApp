@@ -16,7 +16,7 @@ class AppCubits extends Cubit<CubitStates>{
       places = await data.getInfo();
       emit(LoadedState(places));
     }catch(e){
-
+      emit(ErrorState(e.toString()));
     }
   }
 
