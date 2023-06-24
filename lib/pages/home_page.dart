@@ -1,12 +1,13 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cubit/cubit/app_cubit_states.dart';
 import 'package:flutter_cubit/cubit/app_cubits.dart';
 import 'package:flutter_cubit/misc/colors.dart';
-import 'package:flutter_cubit/services/data_services.dart';
 import 'package:flutter_cubit/widgets/app_large_text.dart';
 import 'package:flutter_cubit/widgets/app_text.dart';
+
+import '../model/data_model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -28,8 +29,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     return Scaffold(
       body: BlocBuilder<AppCubits, CubitStates>(
         builder: (context, state){
-          if(state is LoadedState){
-            var info = state.places;
+          late List<DataModel> info;
+
+          if(state is LoadedState) {
+             info = state.places;
+          }
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +43,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     padding: const EdgeInsets.only(top: 70, left: 20),
                     child: Row(
                       children: [
-                        Icon(Icons.menu, size: 30, color: Colors.black54),
+                        const Icon(Icons.menu, size: 30, color: Colors.black54),
                         Expanded(child: Container()),
                         Container(
                           margin: const EdgeInsets.only(right: 20),
@@ -47,42 +51,42 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           height: 50,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
-                            color: Colors.grey.withOpacity(0.5),
+                              image: const DecorationImage(
+                                image: AssetImage('img/Me.jpeg')
+                              )
                           ),
                         )
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   //discover text
                   Container(
                     margin: const EdgeInsets.only(left: 20),
-                    child: AppLargeText(text: "Discover"),
+                    child: const AppLargeText(text: "Discover"),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   //tabbar
-                  Container(
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: TabBar(
-                          labelPadding: const EdgeInsets.only(left: 20, right: 20),
-                          controller: _tabController,
-                          labelColor: Colors.black,
-                          unselectedLabelColor: Colors.grey,
-                          isScrollable: true,
-                          indicatorSize: TabBarIndicatorSize.label,
-                          indicator:
-                          CircleTabIndicator(color: AppColors.mainColor, radius: 4),
-                          tabs: [
-                            Tab(text: "Places"),
-                            Tab(text: "Inspiration"),
-                            Tab(text: "Emotions"),
-                          ]),
-                    ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: TabBar(
+                        labelPadding: const EdgeInsets.only(left: 20, right: 20),
+                        controller: _tabController,
+                        labelColor: Colors.black,
+                        unselectedLabelColor: Colors.grey,
+                        isScrollable: true,
+                        indicatorSize: TabBarIndicatorSize.label,
+                        indicator:
+                        CircleTabIndicator(color: AppColors.mainColor, radius: 4),
+                        tabs: const [
+                          Tab(text: "Places"),
+                          Tab(text: "Inspiration"),
+                          Tab(text: "Emotions"),
+                        ]),
                   ),
                   Container(
                     padding: const EdgeInsets.only(left: 20),
@@ -107,30 +111,18 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     borderRadius: BorderRadius.circular(20),
                                     color: Colors.white,
                                     image: DecorationImage(
-                                        image: NetworkImage("${DataServices.baseUrl}/uploads/"+info[index].img),
+                                        image: NetworkImage('http://mark.bslmeiyu.com/uploads/${info[index].img}'),
                                         fit: BoxFit.cover)),
                               ),
                             );
                           },
                         ),
-                        ListView.builder(
-                            itemBuilder: (context, index){
-                          return ListTile(
-                            leading: Icon(Icons.account_circle),
-                            title: Text("Line "+(index+1).toString()),
-                            selectedTileColor:Colors.green[400],
-                            onTap: () {
-                              setState(() {
-
-                              });
-                            },
-                          );
-                        }),
-                        Text("Bye")
+                        const Text("Inspiration"),
+                        const Text("Bye")
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 30,
                   ),
                   Container(
@@ -138,7 +130,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        AppLargeText(
+                        const AppLargeText(
                           text: "Explore more",
                           size: 22,
                         ),
@@ -146,7 +138,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(
@@ -170,16 +162,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                       borderRadius: BorderRadius.circular(20),
                                       color: Colors.white,
                                       image: DecorationImage(
-                                          image: AssetImage("img/"+images.keys.elementAt(index)),
+                                          image: AssetImage('img/${images.keys.elementAt(index)}'),
                                           fit: BoxFit.cover)),
                                 ),
-                                SizedBox(height: 10,),
-                                Container(
-                                  child: AppText(
-                                    text: images.values.elementAt(index),
-                                    color: AppColors.textColor2,
+                                const SizedBox(height: 10,),
+                                AppText(
+                                  text: images.values.elementAt(index),
+                                  color: AppColors.textColor2,
 
-                                  ),
                                 )
                               ],
                             ),
@@ -189,9 +179,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ],
               ),
             );
-          }else{
-           return Container();
-          }
         },
       )
     );
@@ -200,9 +187,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
 class CircleTabIndicator extends Decoration {
   final Color color;
-  double radius;
+  final double radius;
 
-  CircleTabIndicator({required this.color, required this.radius});
+  const CircleTabIndicator({required this.color, required this.radius});
 
   @override
   BoxPainter createBoxPainter([VoidCallback? onChanged]) {

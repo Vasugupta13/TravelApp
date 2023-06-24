@@ -4,9 +4,9 @@ import 'package:flutter_cubit/model/data_model.dart';
 import 'package:http/http.dart' as http;
 
 class DataServices{
-  static const  String baseUrl = "http://127.0.0.1:8000";
+    String baseUrl = 'http://mark.bslmeiyu.com/api';
  Future<List<DataModel>> getInfo() async {
-    var apiUrl = '/api/getplaces';
+    var apiUrl = '/getplaces';
     http.Response res = await http.get(Uri.parse(baseUrl+apiUrl));
     try{
       if(res.statusCode==200){

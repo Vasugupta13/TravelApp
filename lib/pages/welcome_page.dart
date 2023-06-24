@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cubit/cubit/app_cubits.dart';
@@ -50,10 +50,10 @@ class _WelcomePageState extends State<WelcomePage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      AppLargeText(text: "Trips"),
-                      AppText(text: "Mountain", size: 30,),
-                      SizedBox(height: 20,),
-                      Container(
+                      const AppLargeText(text: "Trips"),
+                      const AppText(text: "Mountain", size: 30,),
+                      const SizedBox(height: 20,),
+                      SizedBox(
                         width: 250,
                         child: AppText(
                           text:images.values.elementAt(index),
@@ -61,14 +61,14 @@ class _WelcomePageState extends State<WelcomePage> {
                           size: 14,
                         ),
                       ),
-                      SizedBox(height: 40,),
+                      const SizedBox(height: 40,),
                       GestureDetector(
                         onTap: (){
                           BlocProvider.of<AppCubits>(context).getData();
                         },
-                        child: Container(
+                        child: SizedBox(
                             width: 200,
-                            child: Row(children:[ ResponsiveButton(width: 120,)])),
+                            child: Row(children:const [ ResponsiveButton(width: 120,)])),
                       )
                     ],
                   ),
